@@ -25,7 +25,7 @@ const getServers = async () => {
             const scannedServer = "http://" + subnet + i.toString();
             try {
                 const response = await axios.get(scannedServer + ":3000", {
-                    timeout: 100
+                    timeout: 200
                 });
 
                 if (response.status == "200") {
@@ -35,7 +35,7 @@ const getServers = async () => {
             } catch (e) {}
             try {
                 const response = await axios.get(scannedServer + ":8000", {
-                    timeout: 100
+                    timeout: 200
                 });
 
                 if (response.status == "200") {
@@ -45,7 +45,7 @@ const getServers = async () => {
             } catch (e) {}
             try {
                 const response = await axios.get(scannedServer + ":8080", {
-                    timeout: 100
+                    timeout: 200
                 });
 
                 if (response.status == "200") {
