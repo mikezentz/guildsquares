@@ -1,7 +1,6 @@
 import axios from "axios";
 
-// const localUrl = `//${window.location.host.split(":")[0]}:1337`;
-const localUrl = 'localhost:9000'
+const localUrl = `//${window.location.host.split(":")[0]}:1111`;
 const client = axios.create({
   baseURL: localUrl,
 });

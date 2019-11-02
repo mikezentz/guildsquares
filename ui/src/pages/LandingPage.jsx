@@ -1,4 +1,4 @@
-import React, {useGlobal, useEffect} from 'reactn'
+import React, {useGlobal} from 'reactn'
 import styled from 'styled-components'
 
 import ScrollBar from '../components/ScrollBar'
@@ -12,21 +12,22 @@ const Body = styled.div`
 `
 
 const LandingPage = () => {
-    const [ screenList, setScreenList ] = useGlobal('screenList')
+    const { 1: setScreenList } = useGlobal('screenList')
+    const { 0: mainScreen } = useGlobal('mainScreen')
 
-    const getList = () => {
+    const getList = async () => {
         const { data } = await client.get('/')
 
         setScreenList(data)
     }
 
-    useEffect(() => {
-        getList()
-    }, [])
+    setInterval(() => getList(), 300000)
+
+
 
     return (
         <Body>
-            <Frame Width="800" Height="450"></Frame>
+            <Frame SRC={mainScreen} Width="800" Height="450"></Frame>
             <ScrollBar />
         </Body>
     )

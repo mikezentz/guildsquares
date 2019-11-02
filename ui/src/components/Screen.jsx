@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useGlobal} from 'reactn'
 import styled from 'styled-components'
 
 const Frame = styled.iframe`
@@ -6,10 +6,15 @@ const Frame = styled.iframe`
     width: ${props => props.Width || '800px'};
 `
 
-const Screen = () => {
+const Screen = (props) => {
+    const { 1: setMainScreen } = useGlobal('mainScreen')
+
+    const changeDisplay = () => {
+
+    }
 
     return (
-        <Frame></Frame>
+        <Frame src={props.Server} onClick={changeDisplay}></Frame>
     )
 }
 

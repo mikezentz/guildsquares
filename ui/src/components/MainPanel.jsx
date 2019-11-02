@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useGlobal } from 'react'
 import styled from 'styled-components'
+import Screen from './Screen'
 
 
 
 const MainPanel = () => {
 
+    const { 0: mainScreen } = useGlobal('mainScreen')
+
     return (
-        <div></div>
+        <Screen src={mainScreen ? mainScreen : ''}></Screen>
     )
 }
 

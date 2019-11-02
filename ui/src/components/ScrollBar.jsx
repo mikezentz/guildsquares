@@ -9,15 +9,11 @@ const ScrollingDiv = styled.div`
 
 const ScrollBar = () => {
     const { 0: screenList } = useGlobal('screenList')
-    const django = screenList.django
-    const vue = screenList.vue
-    const react = screenList.react
+    const localurl = `//${window.location.host.split(":")[0]}:1111`
 
     return (
         <ScrollingDiv>
-            { django.length > 0 ? django.map((screen) => (<Screen Display={screen}></Screen>)) : ''}
-            { vue.length > 0 ? vue.map((screen) => (<Screen Display={screen}></Screen>)) : ''}
-            { react.length > 0 ? react.filter((screen) => screen.ip !== window.location.host.split(":")[0]).map((screen) => (<Screen Display={screen}></Screen>)) : ''}
+            {screenList.liveservers ? screenList.liveservers.filter((server) => server !== localurl).map((server) => (<Screen key={server} Server={server}></Screen>) ) : ''}
         </ScrollingDiv>
     )
 }
