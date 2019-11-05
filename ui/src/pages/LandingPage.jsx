@@ -1,4 +1,4 @@
-import React, {useGlobal, useEffect} from 'reactn'
+import React, {useGlobal, useState, useEffect} from 'reactn'
 import Gallery from '../components/Gallery'
 import client from '../api/client'
 import styled from 'styled-components'
@@ -9,35 +9,32 @@ const Body = styled.div`
     background: linear-gradient(135deg, rgb(32, 186, 230),rgb(110, 6, 173));
 `
 
+const Container = styled.div`
+    display: grid;
+    grid-template-columns: repeat(${props => props.digit}, auto);
+    grid-template-rows: repeat(${props => props.digit}, auto);
+`
+
 const LandingPage = () => {
+    const [ digit, setDigit ] = useState(4)
+    const [ frames, setFrames] = useState([])
 
-    const  { 1: setImages } = useGlobal("images")
-    const [ countdown, setCountdown ] = useGlobal("countdown")
-
-    const getImages = async () => {
+    const getFrames = async () => {
         const { data } = await client.get('/')
 
-        setImages(data)
-    }
-
-    const timer = () => {
-        setCountdown(countdown - 1)
-        console.log(countdown)
-        if(countdown === 0) {
-            setCountdown(30)
-            // getImages()
-        }
+        setFrames(data.liveservers)
+        setDigit(Math.floor(Math.sqrt(data.liveservers.length)))
     }
 
     useEffect(() => {
-        setCountdown(30)
-        setInterval(timer, 1000)
-      }, [])
+        getFrames()
+    }, [])
 
     return (
         <Body>
-            <Gallery />
-            <button onClick={() => setCountdown(29)}>Change</button>
+            <Container digit={digit}>
+                {frames ? frames.map(frame => (<iframe src={frame} height={768/digit} width={1366/digit}></iframe>)) : ''}
+            </Container>
         </Body>
     )
 }
