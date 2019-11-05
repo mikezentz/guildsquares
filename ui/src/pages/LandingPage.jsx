@@ -35,7 +35,7 @@ const LandingPage = () => {
     return (
         <Body>
             <Container digit={digit}>
-                {frames ? frames.map(frame => (<iframe title={frame.toString()} src={frame} height={900/digit} width={1600/digit}></iframe>)) : 'Loading...'}
+                {frames ? frames.map(frame => (<iframe title={frame.toString()} src={frame} height={window.innerHeight/digit} width={window.innerWidth/digit}></iframe>)) : 'Loading...'}
             </Container>
         </Body>
     )
