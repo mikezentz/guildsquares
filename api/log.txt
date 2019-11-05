@@ -1,0 +1,9 @@
+# Nmap 7.80 scan initiated Mon Nov  4 20:00:03 2019 as: nmap -oG log.txt -p 1-9999 192.168.1.0/24
+Host: 192.168.1.1 (setup.ubnt.com)	Status: Up
+Host: 192.168.1.1 (setup.ubnt.com)	Ports: 22/open/tcp//ssh///, 53/open/tcp//domain///, 80/open/tcp//http///, 443/open/tcp//https///	Ignored State: closed (9995)
+Host: 192.168.1.6 ()	Status: Up
+Host: 192.168.1.6 ()	Ports: 22/open/tcp//ssh///	Ignored State: closed (9998)
+Host: 192.168.1.7 (unifi)	Status: Up
+Host: 192.168.1.7 (unifi)	Ports: 22/open/tcp//ssh///, 80/open/tcp//http///, 443/open/tcp//https///, 5355/open/tcp//llmnr///, 6789/open/tcp//ibm-db2-admin///, 8080/open/tcp//http-proxy///, 8443/open/tcp//https-alt///, 8843/open/tcp//unknown///, 8880/open/tcp//cddbp-alt///	Ignored State: closed (9990)
+Host: 192.168.1.10 ()	Status: Up
+Host: 192.168.1.10 ()	Ports: 22/open/tcp//ssh///	Ignored State: closed (9998)

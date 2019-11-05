@@ -7,13 +7,12 @@ const cors = require("cors");
 const morgan = require("morgan");
 const { AsyncRouter } = require("express-async-router")
 
-// const response = await axios.get("https://jsonplaceholder.typicode.com/posts")
-
 let liveservers = [];
 
 const getServers = async () => {
     while(true){
-        let buildservers = []
+        const ports = ["3000", "8000", "8080", "5050"]
+        const buildservers = []
         const ipAddress = ip.address();
         const subnet =
             ipAddress
@@ -21,38 +20,21 @@ const getServers = async () => {
                 .slice(0, 3)
                 .join(".") + ".";
 
-        for (i = 1; i < 254; i++) {
-            const scannedServer = "http://" + subnet + i.toString();
-            try {
-                const response = await axios.get(scannedServer + ":3000", {
-                    timeout: 200
-                });
+        for (i = 1; i < 255; i++) {
+            for (port of ports) {
+                const scannedServer = "http://" + subnet + i.toString() + ":" + port;
+                try {
+                    const response = await axios.get(scannedServer, {
+                        timeout: 200
+                    });
 
-                if (response.status == "200") {
-                    console.log(scannedServer + ":3000");
-                    buildservers.push(scannedServer + ":3000");
-                }
-            } catch (e) {}
-            try {
-                const response = await axios.get(scannedServer + ":8000", {
-                    timeout: 200
-                });
+                    if (response.status == "200") {
+                        console.log("Found open server: " + scannedServer);
+                        buildservers.push(scannedServer);
+                    }
+                } catch (e) {}
+            }
 
-                if (response.status == "200") {
-                    console.log(scannedServer + ":8000");
-                    buildservers.push(scannedServer + ":8000");
-                }
-            } catch (e) {}
-            try {
-                const response = await axios.get(scannedServer + ":8080", {
-                    timeout: 200
-                });
-
-                if (response.status == "200") {
-                    console.log(scannedServer + ":8080");
-                    buildservers.push(scannedServer + ":8080");
-                }
-            } catch (e) {}
         }
         console.log(buildservers);
         console.log("Done");
