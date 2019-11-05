@@ -27,13 +27,15 @@ const LandingPage = () => {
     }
 
     useEffect(() => {
-        getFrames()
+        setInterval(() => {
+            getFrames()
+        }, 5000)
     }, [])
 
     return (
         <Body>
             <Container digit={digit}>
-                {frames ? frames.map(frame => (<iframe src={frame} height={768/digit} width={1366/digit}></iframe>)) : ''}
+                {frames ? frames.map(frame => (<iframe title={frame.toString()} src={frame} height={768/digit} width={1366/digit}></iframe>)) : ''}
             </Container>
         </Body>
     )
