@@ -18,6 +18,9 @@ const Container = styled.div`
 const LandingPage = () => {
     const [ digit, setDigit ] = useState(4)
     const [ frames, setFrames] = useState([])
+    const Height = window.innerHeight
+    const Width = window.innerWidth
+    console.log(Width, Height)
 
     const getFrames = async () => {
         const { data } = await client.get('/')
@@ -35,7 +38,7 @@ const LandingPage = () => {
     return (
         <Body>
             <Container digit={digit}>
-                {frames ? frames.map(frame => (<iframe title={frame.toString()} src={frame} height={window.innerHeight/digit} width={window.innerWidth/digit}></iframe>)) : 'Loading...'}
+                {frames ? frames.map(frame => (<iframe title={frame.toString()} src={frame} height={Height/digit} width={Width/digit}></iframe>)) : 'Loading...'}
             </Container>
         </Body>
     )
