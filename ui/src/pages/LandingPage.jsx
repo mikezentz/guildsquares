@@ -20,7 +20,6 @@ const LandingPage = () => {
     const [ frames, setFrames] = useState([])
     const Height = 984
     const Width = 1824
-    console.log(Width, Height)
 
     const getFrames = async () => {
         const { data } = await client.get('/')
